@@ -1,0 +1,41 @@
+#include <stdio.h>
+#define linhas 3
+#define colunas 3
+
+//percorrer
+void imprime_matriz(int matriz[][colunas]){
+    for(int linha = 0; linha < linhas; linha++){
+        for(int coluna = 0; coluna < colunas; coluna++){
+            printf("%2d", matriz[coluna][linha]);
+        }
+        printf("\n");
+    }
+}
+ int soma_matriz(int matriz[][colunas]){
+     int soma = 0;
+     for(int linha = 0; linha < linhas; linha++){
+
+         for(int coluna = 0; coluna < colunas; coluna++){
+             soma += matriz[linha][coluna];
+
+         }
+     }
+     return printf("\na soma é: %d", soma);
+ }
+
+int main()
+{
+   int matriz[linhas][colunas];
+   int linha, coluna;
+   for(linha = 0; linha < linhas; linha++){
+       for(coluna = 0; coluna < colunas; coluna++){
+           matriz[linha][coluna] = rand()%10;
+       }
+   }
+
+   imprime_matriz(matriz);
+   soma_matriz(matriz);
+
+
+    return 0;
+}

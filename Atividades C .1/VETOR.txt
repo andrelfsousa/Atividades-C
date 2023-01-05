@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int verifi_maior(int num2[], int tamanho, int indice){
+    if(tamanho ==0)
+        return num2[indice];
+    else{
+        if(num2[tamanho - 1]> num2[indice])
+            return verifi_maior(num2,tamanho -1, tamanho -1);
+            else
+                return verifi_maior(num2, tamanho -1, indice);
+    }
+}
+int cal_media(int vet[],int tam){
+    int media,soma;
+    for (int i = 0; i < tam; i++){
+        soma += vet[i];
+    }
+    media = soma / tam;
+    return media;
+}
+
+int main() {
+
+    int i;
+    int maior = NULL;
+    int num2[] = {2,4,35,50,23,17,9,12,27,5};
+
+    printf("Os valores do vetor sao:\n");
+    for (i = 0; i < 10; i++)
+    printf(" %d, ", num2[i]);
+
+    printf("\n\n o maior é: %d\n", verifi_maior(num2, 10, 0));
+    printf("\n e a media é: %d\n", cal_media(num2,10));
+
+}

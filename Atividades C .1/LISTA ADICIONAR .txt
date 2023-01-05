@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void BuscarMatricula();
+void Inserir();
+void Exibir();
+int menu();
+
+typedef struct registro
+{
+    int matricula [50];
+    float nota;
+    struct registro *prox;
+}Registro;
+
+int menu()
+{
+    int op;
+    printf("Informe a opcao desejada\n");
+    printf("1-Inserir\n");
+    printf("2-Exibir lista\n");
+    printf("3-Sair\n");
+    scanf("%d",&op);
+    return op;
+}
+
+void Inserir(Registro *inicio)
+{
+    Registro *novo;
+    novo=inicio;
+    if(novo->prox==NULL)
+    {
+        novo->prox=(Registro *)malloc(sizeof(Registro));
+        novo = novo->prox;
+    printf("Informe a matricula do aluno\n");
+    scanf("%d", &novo->matricula);
+
+    printf("Informe a nota do aluno\n");
+    scanf("%f", &novo->nota);
+    novo->prox = NULL;
+    }
+    else
+    {
+        novo=novo->prox;
+        Inserir(novo);
+    }
+
+}
+
+void Exibir(Registro *inicio)
+{
+    Registro *Exibir;
+    Exibir=inicio->prox;
+    if(Exibir==NULL)
+    {
+        printf("\t-------------------------------------\n");
+        printf("\tRegistro Vazio\n");
+        printf("\t-------------------------------------\n");
+    }
+    else{
+        do{
+            printf("\t | Matricula : %d | Nota: %.2f \n", Exibir->matricula, Exibir->nota);
+            printf("\t-------------------------------------------------\n");
+            Exibir=Exibir->prox;
+        }while(Exibir!=NULL);
+        }
+}
+
+int main(){
+    Registro *inicio;
+    inicio=(Registro *)malloc(sizeof(Registro));
+    inicio->prox=NULL;
+
+
+    int op;
+    int sair=0;
+    int posvalida;
+    while(!sair)
+    {
+        op=menu();
+        switch(op)
+        {
+            case 1:{
+                Inserir(inicio);
+                break;
+                    }
+            case 2:{
+                Exibir(inicio);
+                break;
+                    }
+            case 3:{
+                sair=1;
+                break;
+            }
+        }
+    }
+}
+
+
